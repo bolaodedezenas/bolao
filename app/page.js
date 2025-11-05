@@ -23,11 +23,11 @@ export default function Home() {
   if (loading || !user) return <Loading />;
 
   return (
-    <main className="min-h-screen flex gap-2 flex-col items-center justify-center bg-black p-4">
+    <main className="min-h-screen flex  flex-col items-center justify-center bg-black p-4">
       <Header />
       <FallingBalls count={8} /> {/* Número de bolas */}
-      <h1 className="sm:text-[4.3rem] text-[2.2rem] text-center  text-white  font-bold justify-center position:relative z-10 "> Bolão de Dezenas</h1>
-      <p className="sm:text-[2.3rem]  text-[1.7rem]  text-center text-white position:relative z-10 ">Em construção!</p>
+      <h1 className="text-[2rem] sm:text-[4.3rem] lg:text-[6rem] text-center  text-white  font-bold justify-center position:relative z-10 "> Bolão de Dezenas</h1>
+      <p className="text-[1.5rem] sm:text-[2rem] lg:text-[3rem]  text-center text-white position:relative z-10 ">Em construção!</p>
     </main>
   );
 }
