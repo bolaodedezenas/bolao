@@ -26,7 +26,7 @@ export default function Home() {
     <main className="min-h-screen flex gap-2 flex-col items-center justify-center bg-black p-4">
       <Header />
       <FallingBalls count={20} /> {/* Número de bolas */}
-      <h1 className="text-6xl text-white  font-bold justify-center position:relative z-10 "> Bolão de Dezenas</h1>
+      <h1 className="text-7xl text-white  font-bold justify-center position:relative z-10 "> Bolão de Dezenas</h1>
       <p className="text-3xl  text-center text-white position:relative z-10 ">Em construção!</p>
     </main>
   );
