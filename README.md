@@ -26,3 +26,129 @@
 #### Contacts
 - Email - contato@rixxer.com.br<br/>
 - Phone/WhatsApp - [35984265018](https://wa.me/5535984265018)
+
+
+
+# 🎯 Bolão de Dezenas
+> _Sistema completo para criação, gerenciamento e participação em bolões de dezenas._
+
+<!-- ✅ Adicione aqui o seu banner ou logo -->
+![Banner](./public/banner.png)
+
+---
+
+## 📌 Navegação Rápida
+- [Sobre o Projeto](#sobre-o-projeto)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Layout da Aplicação](#layout-da-aplicação)
+- [Funcionalidades](#funcionalidades)
+- [Páginas do Sistema](#páginas-do-sistema)
+  - [Painel](#painel)
+  - [Login--Cadastro](#login--cadastro)
+- [Estrutura de Pastas](#estrutura-de-pastas)
+- [Variáveis de Ambiente](#variáveis-de-ambiente)
+
+
+---
+
+## 🧩 Sobre o Projeto
+> O **Bolão de Dezenas** é um sistema que facilita a criação de bolões, controle de apostas, resultados automáticos e painel administrativo completo.
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+| Tecnologia | Uso |
+|-----------|-----|
+| **Next.js 14+** | Estrutura principal do projeto |
+| **React** | Construção dos componentes |
+| **TailwindCSS** | Estilização |
+| **Firebase/Auth** | Login e autenticação |
+| **Firebase/DB** | Armazenamento (se aplicável) |
+| **Vercel** | Deploy sugerido |
+| **ESLint / Prettier** | Padronização de código |
+| **React-icons** | Padronização de Icons |
+
+---
+
+
+## 📦 Estrutura de Pastas (Exemplo)
+```bash
+/project
+ ├── app
+ │   ├── (auth)
+ │   │   ├── login
+ │   │   │   └── page.jsx
+ │   │   └── register
+ │   │       └── page.jsx
+ │   ├── favicon.ico
+ │   ├── globals.css
+ │   ├── layout.js
+ │   ├── not-found.jsx
+ │   └── page.js
+ │
+ ├── components
+ │   ├── Btns
+ │   ├── FallingBalls
+ │   ├── Forms
+ │   ├── Header
+ │   ├── InputUi
+ │   ├── Label
+ │   └── Loading
+ │
+ ├── context
+ ├── hooks
+ ├── libs
+ ├── public
+ ├── .env.local
+ ├── next.config.mjs
+ ├── tailwind.config.js
+ ├── postcss.config.mjs
+ ├── package.json
+ └── README.md
+
+
+
+
+## 🖥 Layout da Aplicação
+
+## ✅ Funcionalidades
+- ✅ Controle de dezenas  
+- ✅ Criação de bolões  
+- ✅ Painel administrativo  
+- ✅ Login com Google / Email  
+- ✅ Sistema de ranking  
+- ✅ Gerenciamento de apostas  
+- ✅ Atualização de resultados  
+- ✅ Interface responsiva  
+- ✅ Perfis individuais  
+
+---
+
+# 📚 **Páginas do Sistema**
+
+Abaixo são as seções onde você irá adicionar a explicação de cada página.  
+✅ Cada página já contém **link âncora**, título, descrição e espaço para especificações.
+
+---
+
+## 🔐 Login / Cadastro
+
+### **Descrição**
+Área destinada para que o usuário acesse sua conta e utilize todas as funcionalidades do sistema.
+
+### **Funcionalidades**
+- Login com e-mail e senha  
+- Cadastro de novos usuários  
+- Login com Google  
+- Recuperação de senha  
+- Redirecionamento para o painel após autenticação  
+
+### **Tecnologias**
+- Next.js  
+- React  
+- TailwindCSS  
+- Firebase Authentication
+
+---
+
