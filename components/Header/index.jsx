@@ -7,7 +7,6 @@ import Image from "next/image";
 export default function Header() {
   const { user, handleLogout } = useAuth();
   const router = useRouter();
-  console.log("Header user:", user);
   if (!user) return null; // não mostra header se não estiver logado
 
   const firstName = user.displayName?.split(" ")[0] || "Usuário";
@@ -15,7 +14,7 @@ export default function Header() {
 
   const logoutUser = async () => {
     await handleLogout();
-    router.push("/login");
+    router.push("/login"); // redireciona após logout
   };
 
   return (

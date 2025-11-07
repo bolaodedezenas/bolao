@@ -8,29 +8,25 @@ import SignInForm from "@/components/Forms/AuthForms/SignInForm";
 
 
 export default function LoginPage() {
-
   const router = useRouter();
-  const { handleEmailLogin, handleLoginWithGoogle, user, loading } = useAuth(); // pega as funções do contexto
+  const { handleEmailLogin, handleLoginWithGoogle, user, loading, setLoading  } = useAuth(); // pega as funções do contexto
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-
+  const [visible, setVisible] = useState(false);
 
    useEffect(() => {
-    if (!loading && user) {
+    if (user) {
       router.replace("/"); // usuário já logado vai para raiz
     }
-  }, [user, loading, router]);
+  }, [user, router]);
 
-  if (loading || user) return  <Loading />;
 
   // Login com email e senha
   const onEmailLogin = async (e) => {
     e.preventDefault();
     // setError("");
-
     // const { user, error } = await handleEmailLogin(email, password);
     // if (error) return setError("Email ou senha inválidos.");
     // alert(`Login realizado! Bem-vindo, ${user.displayName || user.email}`);
@@ -38,20 +34,30 @@ export default function LoginPage() {
   };
 
   // Login com Google
-  const onGoogleLogin = async (e) => {
+  const onGoogleLogin = async () => {
+    setVisible(true);
     setError("");
     const { user, error } = await handleLoginWithGoogle();
-    if (error) return setError("Erro ao entrar com Google.");
+    if (error) return setError("Erro ao entrar com Google."); setVisible(false);
     // Exemplo dentro do onEmailLogin ou onGoogleLogin
     if (user) {
+      setLoading(true);
       router.push("/"); // redireciona para a página raiz
     }
-    // router.push("/dashboard")
   };
 
+   if (loading) return  <Loading />;
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#f2f2f2]  sm:px-4 py-4">
-      <SignInForm onGoogleLogin={onGoogleLogin} onEmailLogin={onEmailLogin} />
+    <div className="
+      min-h-screen 
+      flex items-center justify-center 
+      bg-gradient-to-r from-[rgb(var(--background))] to-[rgb(var(--background-secundary))]
+      p-3
+      sm:px-10 sm:py-10
+      "
+    >
+      <SignInForm visible={visible} onGoogleLogin={onGoogleLogin} onEmailLogin={onEmailLogin} />
     </div>
   );
 }

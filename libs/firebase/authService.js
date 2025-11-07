@@ -1,5 +1,5 @@
 import { auth, googleProvider } from "./FirebaseConfig";
-import { signInWithPopup,signInWithRedirect, signOut, createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithPopup, signOut, createUserWithEmailAndPassword } from "firebase/auth";
 
 export const loginWithGoogle = async () => {
   try {

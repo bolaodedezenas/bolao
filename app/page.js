@@ -8,19 +8,21 @@ import { useRouter } from "next/navigation";
 import FallingBalls from "@/components/FallingBalls";
 import Header from "@/components/Header";
 
-export default function Home() {
+export default function Painel() {
   const router = useRouter();
   useProtectedRoute();
 
-  const { user, loading } = useAuth();
+  const { user, loading} = useAuth();
+ 
 
    useEffect(() => {
-      if (loading && !user) {
+      if (!user) {
         router.replace("/login"); // usuário já logado vai para raiz
       }
-    }, [user, loading, router]);
+    }, [user,  loading,  router]);
 
-  if (loading || !user) return <Loading />;
+    if (loading) return  <Loading />;
+
 
   return (
     <main className="min-h-screen flex  flex-col items-center justify-center bg-black p-4">

@@ -1,8 +1,8 @@
+"use client";
 
-
-export default function FormLayout({ children }) {
+export default function FormLayout({ children, visible }) {
   return (
-    <div className=" w-[450px] flex items-center justify-center bg-white p-6 rounded-2xl shadow-lg select-none">
+    <div className={visible ? "hidden" : "flex" + " w-[450px]  items-center justify-center bg-white p-6 rounded-2xl shadow-lg select-none"}>
         {children}
     </div>
   );

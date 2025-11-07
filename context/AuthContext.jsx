@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "@/libs/firebase/FirebaseConfig";
-import { loginWithGoogle, logout } from "@/libs/firebase/auth";
+import { loginWithGoogle, logout } from "@/libs/firebase/authService";
 
 const AuthContext = createContext();
 
@@ -11,9 +11,10 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user || null);
-      setLoading(false);
+      setTimeout(() => setLoading(false), 2000);
     });
     return () => unsubscribe();
   }, []);
@@ -27,12 +28,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   const handleLogout = async () => {
+    setLoading(true);
     await logout();
-    setUser(null);
+    setUser(null); // atualiza o state do contexto setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, handleLoginWithGoogle, handleLogout }}>
+    <AuthContext.Provider value={{ user, loading, setLoading, handleLoginWithGoogle, handleLogout }}>
       {children}
     </AuthContext.Provider>
   );
