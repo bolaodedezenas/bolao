@@ -19,6 +19,21 @@
   }
 }
 
+/* CSS Variables generated from Kigen.design */
+:root {
+  --cornflower-blue-50:  #eef0fb;
+  --cornflower-blue-100: #d7ddf6;
+  --cornflower-blue-200: #b3c1ee;
+  --cornflower-blue-300: #92a7e7;
+  --cornflower-blue-400: #7190e0;
+  --cornflower-blue-500: #557eda;
+  --cornflower-blue-600: #4368b7;
+  --cornflower-blue-700: #324f8e;
+  --cornflower-blue-800: #213664;
+  --cornflower-blue-900: #101d3a;
+  --cornflower-blue-950: #071025;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
