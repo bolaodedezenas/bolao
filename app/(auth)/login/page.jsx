@@ -53,12 +53,12 @@ export default function LoginPage() {
       h-screen 
       flex items-center justify-center flex-col
       bg-gradient-to-t from-[rgb(var(--background-secundary))] to-[rgb(var(--background))]
-      px-2
+      px-3
       sm:p-10
       "
     >
       <SignInForm visible={visible} onGoogleLogin={onGoogleLogin} onEmailLogin={onEmailLogin} />
-      <p className="font-light text-[1rem] text-[rgb(var(--white))] mt-10">Tecnologia desenvolvida por Rixxer</p>
+      <p className="font-light text-[0.9rem] text-[rgb(var(--white))] mt-4">Tecnologia desenvolvida por Rixxer</p>
     </div>
   );
 }

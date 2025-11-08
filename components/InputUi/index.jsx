@@ -19,6 +19,7 @@ const InputUi = forwardRef(function InputUi({ type, placeholder, autocomplete, .
         pl-4 
         rounded-[5px]
         w-full 
+        min-w-[260px]
         outline-0 
         bg-[rgb(var(--input-bg))] 
         cursor-pointer"
