@@ -1,37 +1,46 @@
 "user client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 // components
 import FormLayout from "@/components/Forms/FormLayout";
 import Label from "@/components/Label";
 import InputUi from "@/components/InputUi";
-import { IoLockClosedOutline } from "react-icons/io5";
 import { FiEyeOff } from "react-icons/fi";
 import SignInButton from "@/components/Btns/SignInButton";
 import { FiEye } from "react-icons/fi";
 import GoogleButton from "@/components/Btns/GoogleButton";
 //icons
-import { FaAward } from "react-icons/fa6";
-import { MdOutlineMailOutline } from "react-icons/md";
 import Icon from "@/components/Icon";
 
 export default function SignInForm({ onGoogleLogin, onEmailLogin,  visible }) {
+    const perfil = JSON.parse(localStorage.getItem("Photo")) || null;
+    console.log(perfil);
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const [showPassword, setShowPassword] = useState(true);
 
   return (
     <FormLayout visible={visible}>
-        <form onSubmit={(e) => onEmailLogin(e)} className="w-full flex flex-col items-center pt-4 pb-5">
-            <Icon 
-                className="rounded-full "
-                name="account_circle" 
-                size={50} 
-                color="rgb(var(--icon))" 
-            />
+        <form onSubmit={(e) => onEmailLogin(e)} className="w-full flex flex-col items-center pt-2 pb-5">
+            {perfil === null ?
+                <Icon 
+                    className="rounded-full "
+                    name="account_circle" 
+                    size={50} 
+                    color="rgb(var(--icon))" 
+                /> :
+                <Image
+                    src={perfil}        // caminho da imagem
+                    alt="Foto de perfil" 
+                    width={50}         // largura em px
+                    height={50}        // altura em px
+                    className="rounded-full mb-1.5"
+                />
+            }
             <h1 className="text-[rgb(var(--text-title))] text-[1.2rem] font-bold">Acesso ao Painel</h1>
             <p className=" text-[1rem] text-center text-[rgb(var(--text-paragraph))] font-normal">Entre na sua conta com seus dados abaixo:</p>
-            <div className="w-[80%] mt-8">
+            <div className="w-full sm:w-[80%] mt-8">
                 
                 <div 
                     onClick={() => emailRef.current?.focus()}
@@ -44,7 +53,6 @@ export default function SignInForm({ onGoogleLogin, onEmailLogin,  visible }) {
                         type="email" 
                         placeholder="Email@example.com" 
                         autocomplete="email" 
-                        required
                     />
                 </div>
                 
@@ -59,7 +67,6 @@ export default function SignInForm({ onGoogleLogin, onEmailLogin,  visible }) {
                         type={showPassword ? "password" : "text"} 
                         placeholder="Digite sua senha" 
                         autocomplete="new-password"
-                        required
                     />
                     {showPassword ? 
                         <FiEyeOff onClick={(e) => {e.stopPropagation(); setShowPassword(false)}}  className=" 

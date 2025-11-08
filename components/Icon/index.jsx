@@ -1,4 +1,4 @@
-
+"user client";
 export  default function Icon({ name, size = 24, color = "currentColor", className = "" }) {
     return (
         <div>

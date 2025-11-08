@@ -14,7 +14,11 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user || null);
+      console.log(user)
       setTimeout(() => setLoading(false), 2000);
+      if (user) {
+        localStorage.setItem("Photo", JSON.stringify(user.photoURL));
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -23,7 +27,9 @@ export const AuthProvider = ({ children }) => {
     const { user, error } = await loginWithGoogle();
     if (error) return { error };
     setUser(user); // atualiza o state do contexto
-    
+    if (user) {
+      localStorage.setItem("Photo", JSON.stringify(user.photoURL));
+    }
     return { user };
   };
 

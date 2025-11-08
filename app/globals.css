@@ -102,20 +102,16 @@ body {
   font-family: var(--font-roboto);
 }
 
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #f2f2f2 inset; /* muda o fundo */
-  -webkit-text-fill-color: #000; /* muda a cor do texto */
-  font-size: 1rem;
-}
+
 
 /* Aplica a todos os estados do autofill */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0px 1000px #f1f1f1 inset; /* fundo */
+  -webkit-box-shadow: 0 0 0px 1000px var(--input-bg) inset; /* fundo */
   -webkit-text-fill-color: #000;                   /* cor do texto */
-  font-size: 1.2rem;                                  /* tamanho da fonte */
+  font-size: 0.9rem;                                  /* tamanho da fonte */
   font-family: inherit;    
   font-weight: normal;                         /* mantém a mesma fonte */
 }
