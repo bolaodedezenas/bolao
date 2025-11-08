@@ -35,11 +35,11 @@ export default function SignInForm({ onGoogleLogin, onEmailLogin,  visible }) {
                     alt="Foto de perfil" 
                     width={50}         // largura em px
                     height={50}        // altura em px
-                    className="rounded-full mb-1.5"
+                    className="rounded-full mb-1.5 mt-1.5"
                 />
             }
             <h1 className="text-[rgb(var(--text-title))] text-[1.2rem] font-bold">Acesso ao Painel</h1>
-            <p className=" text-[1rem] text-center text-[rgb(var(--text-paragraph))] font-normal">Entre na sua conta com seus dados abaixo:</p>
+            <p className="pl-3 pr-3 text-[1rem] text-center text-[rgb(var(--text-paragraph))] font-normal">Entre na sua conta com seus dados abaixo:</p>
             <div className="w-[95%] sm:w-[85%] pl-5  pr-5 mt-8 ">
                 
                 <div 
@@ -86,7 +86,7 @@ export default function SignInForm({ onGoogleLogin, onEmailLogin,  visible }) {
             <div className="w-[95%] sm:w-[85%] pl-5  pr-5  ">
                 <GoogleButton onClick={() => {onGoogleLogin()}} />
             </div>
-            <p className="text-[rgb(var(--text))] text-[0.9rem] text-center mt-4">Não tem uma conta? <span className="text-[rgb(var(--text-links))] cursor-pointer hover:underline">Cadastre-se agora</span></p>
+            <p className="w-[190px] sm:w-full text-[rgb(var(--text))] text-[0.9rem] text-center mt-4">Não tem uma conta? <span className="text-[rgb(var(--text-links))] cursor-pointer hover:underline">Cadastre-se agora</span></p>
         </form>
     </FormLayout>
   );
