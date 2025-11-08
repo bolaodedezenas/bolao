@@ -12,6 +12,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@theme {
+  --breakpoint-xs: 465px;
+  --breakpoint-xxs: 370px;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -115,3 +120,6 @@ input:-webkit-autofill:active {
   font-family: inherit;    
   font-weight: normal;                         /* mantém a mesma fonte */
 }
+.xs {
+    width:"";
+  }
