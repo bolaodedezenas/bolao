@@ -50,14 +50,15 @@ export default function LoginPage() {
 
   return (
     <div className="
-      min-h-screen 
-      flex items-center justify-center 
-      bg-gradient-to-r from-[rgb(var(--background))] to-[rgb(var(--background-secundary))]
-      p-3
-      sm:px-10 sm:py-10
+      h-screen 
+      flex items-center justify-center flex-col
+      bg-gradient-to-t from-[rgb(var(--background-secundary))] to-[rgb(var(--background))]
+      px-2
+      sm:p-10
       "
     >
       <SignInForm visible={visible} onGoogleLogin={onGoogleLogin} onEmailLogin={onEmailLogin} />
+      <p className="font-light text-[1rem] text-[rgb(var(--white))] mt-10">Tecnologia desenvolvida por Rixxer</p>
     </div>
   );
 }

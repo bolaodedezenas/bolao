@@ -34,6 +34,7 @@
   --cornflower-blue-950: rgb(7, 16, 37);
 
   --cornflower-cinza-700: rgb(119, 119, 119);
+  --white: rgb(255, 255, 255);
 }
 
 
@@ -54,16 +55,20 @@
 
   --zinc-700: 119, 119, 119; /* Cinza-azulado claro para textos */
   --white: 255, 255, 255;    /* Branco puro */
+  --black: 0, 0, 0;  
+  --zinc-200: 242, 242, 242;     /* Preto puro */
+  --zinc-300: 238, 238, 238; 
 
 
   /* --- Cores de Texto --- */
-  --text-title: var(--blue-500);     /* Títulos (quase preto) */
-  --text-paragraph: var(--zinc-700); /* Parágrafos (cinza-azulado claro) */
+  --text-title: var( --black); 
+  --text: var(--black); /* Texto comum (quase preto) */
+  --text-paragraph: var( --black); /* Parágrafos (cinza-azulado claro) */
   --text-links: var(--blue-500); /* Parágrafos (cinza-azulado claro) */
 
   /* --- Fundo e Foreground --- */
-  --background: var(--blue-800);      /* Fundo principal */
-  --background-secundary: var(--blue-300);  /* Fundo secundário */
+  --background: var(--blue-500);      /* Fundo principal */
+  --background-secundary: var(--blue-800);  /* Fundo secundário */
 
   /* --- Cores da Marca (Brand) --- */
   --brand: var(--blue-500);          /* Cor principal */
@@ -76,14 +81,18 @@
   --surface-strong: var(--blue-200); /* Fundo mais destacado */
 
   /* --- Ícones --- */
-  --icon: var(--blue-500);           /* Cor padrão do ícone */
+  --icon: var(--blue-950);           /* Cor padrão do ícone */
   --icon-secundary: var(--zinc-700); /* Cor  secundário */
   --icon-hover: var(--blue-600);     /* Ícone ao passar o mouse */
 
   /* --- Botões --- */
-  --btn: var(--blue-500);           /* Fundo do botão */
-  --btn-hover: var(--blue-600);     /* Hover do botão */
-  --btn-text: var(--white);         /* Texto do botão */
+  --btn: var(--blue-950);           /* Fundo do botão */
+  --btn-hover: var(--blue-800);     /* Hover do botão */
+  --btn-text: var(--white);    
+  --btn-bg-secundary: var(--zinc-200);  
+  --btn-bg-secundary-hover: var(--zinc-300);    /* Texto do botão */
+
+  --input-bg: var(--blue-50);      /* Fundo do input */
 }
 
 

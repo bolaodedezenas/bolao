@@ -13,6 +13,7 @@ import GoogleButton from "@/components/Btns/GoogleButton";
 //icons
 import { FaAward } from "react-icons/fa6";
 import { MdOutlineMailOutline } from "react-icons/md";
+import Icon from "@/components/Icon";
 
 export default function SignInForm({ onGoogleLogin, onEmailLogin,  visible }) {
     const emailRef = useRef(null);
@@ -21,17 +22,22 @@ export default function SignInForm({ onGoogleLogin, onEmailLogin,  visible }) {
 
   return (
     <FormLayout visible={visible}>
-        <form onSubmit={(e) => onEmailLogin(e)} className="w-full flex flex-col items-center">
-            <FaAward className=" text-[rgb(var(--icon))]  text-[5rem] mb-2" />
-            <h1 className="text-[rgb(var(--text-title))] text-[1.6rem] font-bold">Bem-vindo de volta</h1>
-            <p className=" text-[1rem] text-center text-[rgb(var(--text-paragraph))]">Entre na sua conta da loteria e tente a sorte!</p>
-            <div className="w-full  mt-8">
-                <Label id="email">Email</Label>
+        <form onSubmit={(e) => onEmailLogin(e)} className="w-full flex flex-col items-center pt-4 pb-5">
+            <Icon 
+                className="rounded-full "
+                name="account_circle" 
+                size={50} 
+                color="rgb(var(--icon))" 
+            />
+            <h1 className="text-[rgb(var(--text-title))] text-[1.2rem] font-bold">Acesso ao Painel</h1>
+            <p className=" text-[1rem] text-center text-[rgb(var(--text-paragraph))] font-normal">Entre na sua conta com seus dados abaixo:</p>
+            <div className="w-[80%] mt-8">
+                
                 <div 
                     onClick={() => emailRef.current?.focus()}
-                    className="flex items-center gap-2 bg-[#f1f1f1] pl-3 pr-3 mb-4 cursor-pointer"
+                    className="flex items-center justify-center  bg-[rgb(var(--input-bg))] rounded-[5px] mb-4 cursor-pointer flex-col h-13 position: relative pl-4"
                 >
-                    <MdOutlineMailOutline className="text-gray-400 text-3xl" />
+                    <Label id="email">Email</Label>
                     <InputUi 
                         ref={emailRef} 
                         id="email" 
@@ -41,12 +47,12 @@ export default function SignInForm({ onGoogleLogin, onEmailLogin,  visible }) {
                         required
                     />
                 </div>
-                <Label id="password">Senha</Label>
+                
                 <div 
                     onClick={() => passwordRef.current?.focus()}
-                    className="flex items-center gap-2 bg-[#f1f1f1] pl-3 pr-3 mb-1 cursor-pointer "
+                    className="flex items-center justify-center  bg-[rgb(var(--input-bg))] rounded-[5px] cursor-pointer flex-col h-13 position: relative pl-4"
                 >
-                    <IoLockClosedOutline className="text-gray-400 text-3xl" />
+                    <Label id="password">Senha</Label>
                     <InputUi 
                         ref={passwordRef} 
                         id="password" 
@@ -57,19 +63,23 @@ export default function SignInForm({ onGoogleLogin, onEmailLogin,  visible }) {
                     />
                     {showPassword ? 
                         <FiEyeOff onClick={(e) => {e.stopPropagation(); setShowPassword(false)}}  className=" 
-                        text-[rgb(var(--icon-secundary))] hover:text-[rgb(var(--icon-hover))] text-2xl cursor-pointer" /> 
+                        text-[rgb(var(--icon-secundary))] hover:text-[rgb(var(--icon-hover))] text-[1.2rem]  cursor-pointer position: absolute right-4" /> 
                         :
                         <FiEye onClick={(e) => {e.stopPropagation(); setShowPassword(true)}} className="
-                        text-[rgb(var(--icon-secundary))] hover:text-[rgb(var(--icon-hover))] text-2xl cursor-pointer"  />
+                        text-[rgb(var(--icon-secundary))] hover:text-[rgb(var(--icon-hover))] text-[1.2rem] cursor-pointer position: absolute right-4"  />
                     }
                 </div>
+
             </div>
-            <p className="text-[rgb(var(--text-links))] text-[1.1rem] w-full text-right cursor-pointer hover:underline mb-1.5">Esqueceu a senha?</p>
-            <SignInButton  text="Entrar"/>
-            <p className="text-[rgb(var(--text-paragraph))] text-[0.9rem] mb-1.5">OU CONTINUAR COM</p>
-            <GoogleButton onClick={() => {onGoogleLogin()}} />
-            <p className="text-[rgb(var(--text-paragraph))] text-[1rem] text-center mt-4">Não tem uma conta? <span className="text-[rgb(var(--text-links))] cursor-pointer hover:underline">Cadastre-se agora</span></p>
-            <p className="text-[rgb(var(--text-paragraph))] text-[1rem] text-center mt-2">Seus números da sorte estão te esperando! </p>
+            <p className="text-[rgb(var(--text))] text-[0.9rem] w-full text-center cursor-pointer hover:underline mb-3.5 mt-3 italic font-medium">Esqueceu a senha?</p>
+            <div className="w-[80%] ">
+                <SignInButton  text="Entrar"/>
+            </div>
+            <p className="text-[rgb(var(--text))] text-[0.9rem] font-medium text-center mb-1.5">OU CONTINUAR COM</p>
+            <div className="w-[80%] ">
+                <GoogleButton onClick={() => {onGoogleLogin()}} />
+            </div>
+            <p className="text-[rgb(var(--text))] text-[0.9rem] text-center mt-4">Não tem uma conta? <span className="text-[rgb(var(--text-links))] cursor-pointer hover:underline">Cadastre-se agora</span></p>
         </form>
     </FormLayout>
   );

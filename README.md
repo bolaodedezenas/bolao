@@ -173,3 +173,7 @@ Seção onde o usuário acessa sua conta ou cria uma nova para utilizar todas as
 - **Custom Hooks** para controle de estado e contexto  
 
 ---
+
+
+
+

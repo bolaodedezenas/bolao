@@ -6,14 +6,14 @@ export default function SignInButton({ onClick, text }) {
     <button
       onClick={onClick}
       className="
-        text-[1.2rem] 
+        text-[1rem] 
         text-white
         font-extrabold 
-        px-4 py-3 
+        px-4 py-1.5 
         mb-2
         w-full 
         bg-[rgb(var(--btn))] hover:bg-[rgb(var(--btn-hover))]
-        rounded-xl  
+        rounded-[5px]  
         transition duration-300 
         cursor-pointer "
     >

@@ -5,7 +5,22 @@ export default function GoogleButton({ onClick }) {
   return (
     <button
         onClick={onClick}
-        className="w-full border border-gray-300 text-[#3d3d3d] py-3 rounded-xl flex items-center justify-center gap-2 bg-white hover:bg-[#f2f2f283] transition-colors duration-500 cursor-pointer text-[1rem]"
+        className="
+          w-full 
+          border-0
+          text-[#3d3d3d] 
+          py-2 
+          rounded-[5px]
+          flex 
+          items-center 
+          justify-center 
+          gap-2 
+          bg-[rgb(var(--btn-bg-secundary))] hover:bg-[rgb(var(--btn-bg-secundary-hover))] 
+          transition-colors duration-500 
+          cursor-pointer 
+          text-[0.9rem]
+          font-light
+          "
         >
         <img
             src="https://www.svgrepo.com/show/475656/google-color.svg"

@@ -2,7 +2,14 @@
 
 export default function Label({ children, id }) {
     return (
-        <label htmlFor={id} className="block text-[1.2rem] font-bold text-gray-500 mb-1 cursor-pointer">
+        <label htmlFor={id} className="
+            w-full
+            block 
+            text-[0.9rem] 
+            font-medium 
+            text-[rgb(var(--text))] 
+            cursor-pointer
+            ">
             {children}
         </label>
     );

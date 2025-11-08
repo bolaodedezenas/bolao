@@ -9,16 +9,18 @@ const InputUi = forwardRef(function InputUi({ type, placeholder, autocomplete, .
       placeholder={placeholder}
       {...props}
       className="
-        block text-[1.2rem] 
-        placeholder:text-[1.2rem] 
+        block 
+        text-[0.9rem] 
+        placeholder:text-[0.9rem] 
         placeholder:text-neutral-500  
-        font-medium 
+        font-normal 
+        italic
         text-[rgb(var(--icon-secundary))]
-        mb-1 p-2 pl-4 
-        rounded 
+        pl-4 
+        rounded-[5px]
         w-full 
         outline-0 
-        bg-[#f1f1f1] 
+        bg-[rgb(var(--input-bg))] 
         cursor-pointer"
       autoComplete={autocomplete}
     />
