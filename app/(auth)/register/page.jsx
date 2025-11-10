@@ -7,13 +7,10 @@ import Loading from "@/components/Loading";
 import SignUpForm from "@/components/Forms/AuthForms/SignUpForm";
 
 
+
 export default function LoginPage() {
   const router = useRouter();
-  const { handleEmailLogin, handleLoginWithGoogle, user, loading, setLoading  } = useAuth(); // pega as funções do contexto
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const { user, loading , setLoading, handleLoginWithGoogle } = useAuth(); // pega as funções do contexto
   const [visible, setVisible] = useState(false);
 
    useEffect(() => {
@@ -22,30 +19,28 @@ export default function LoginPage() {
     }
   }, [user, router]);
 
+   if (loading) return  <Loading />;
 
-  // Login com email e senha
-  const onRegister = async (e) => {
-    e.preventDefault();
-    // setError("");
-    // const { user, error } = await handleEmailLogin(email, password);
-    // if (error) return setError("Email ou senha inválidos.");
-    // alert(`Login realizado! Bem-vindo, ${user.displayName || user.email}`);
-    // router.push("/dashboard")
+   // Login com Google
+  const onGoogleLogin = async () => {
+    const { user, error } = await handleLoginWithGoogle();
+    if (error) return setError("Erro ao entrar com Google."); setVisible(false);
+    if (user) {
+      setLoading(true);
+      router.push("/"); // redireciona para a página raiz
+    }
   };
 
-   if (loading) return  <Loading />;
 
   return (
     <div className="
       min-h-screen 
       flex items-center justify-center flex-col
       bg-gradient-to-t from-[rgb(var(--background-secundary))] to-[rgb(var(--background))]
-      px-3
-      sm:p-4
+      p-4
       "
     >
-      <SignUpForm visible={visible}  onRegister={onRegister} />
-      {/* <p className={`${visible ? "hidden" : "flex"} font-light text-[0.9rem] text-[rgb(var(--white))] mt-8`}>Tecnologia desenvolvida por Rixxer</p> */}
+      <SignUpForm visible={visible} setVisible={setVisible} onGoogleLogin={onGoogleLogin}  />
     </div>
   );
 }

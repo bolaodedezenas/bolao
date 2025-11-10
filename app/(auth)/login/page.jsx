@@ -53,7 +53,7 @@ export default function LoginPage() {
       min-h-screen 
       flex items-center justify-center flex-col
       bg-gradient-to-t from-[rgb(var(--background-secundary))] to-[rgb(var(--background))]
-      px-3
+      p-4
       sm:p-10
       "
     >

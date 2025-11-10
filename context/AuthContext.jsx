@@ -1,7 +1,8 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "@/libs/firebase/FirebaseConfig";
+import { auth, db} from "@/libs/firebase/FirebaseConfig";
+import { doc, getDoc } from "firebase/firestore"; // <-- importa doc/getDoc
 import { loginWithGoogle, logout } from "@/libs/firebase/authService";
 
 const AuthContext = createContext();
@@ -9,29 +10,61 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userToken, setUserToken] = useState(null);
 
-  useEffect(() => {
-    setLoading(true);
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user || null);
-      console.log(user)
-      setTimeout(() => setLoading(false), 2000);
-      if (user) {
-        localStorage.setItem("Photo", JSON.stringify(user.photoURL));
+useEffect(() => {
+  // 🔥 Listener para mudanças de login e logout
+  const unsubscribeAuth = auth.onAuthStateChanged(async (firebaseUser) => {
+    if (firebaseUser) {
+
+      const docRef = doc(db, "users", firebaseUser.uid);
+      const snap = await getDoc(docRef);
+
+      if (snap.exists()) {
+        setUser({ uid: firebaseUser.uid, ...snap.data() });
+      } else {
+        setUser(firebaseUser);
       }
-    });
-    return () => unsubscribe();
-  }, []);
+
+      localStorage.setItem("Photo", JSON.stringify(firebaseUser.photoURL));
+
+    } else {
+      setUser(null);
+    }
+
+  });
+
+  // 🔥 Listener para mudanças no ID Token (renovação automática do Firebase)
+  const unsubscribeToken = auth.onIdTokenChanged(async (user) => {
+    if (user) {
+      const newToken = await user.getIdToken();
+      setUserToken(newToken);
+    } else {
+      setUserToken(null);
+    }
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  });
+
+  // ✅ remover 
+  return () => {
+    unsubscribeAuth();
+    unsubscribeToken();
+  };
+
+}, []);
+
+
+
 
   const handleLoginWithGoogle = async () => {
     const { user, error } = await loginWithGoogle();
     if (error) return { error };
-    setUser(user); // atualiza o state do contexto
-    if (user) {
-      localStorage.setItem("Photo", JSON.stringify(user.photoURL));
-    }
     return { user };
   };
+
 
   const handleLogout = async () => {
     setLoading(true);
@@ -40,7 +73,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, setLoading, handleLoginWithGoogle, handleLogout }}>
+    <AuthContext.Provider value={{ user, loading, userToken, setUser, setLoading, handleLoginWithGoogle, handleLogout }}>
       {children}
     </AuthContext.Provider>
   );

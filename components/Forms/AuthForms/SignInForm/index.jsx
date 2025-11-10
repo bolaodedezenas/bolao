@@ -1,30 +1,68 @@
 "user client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import {loginWithEmail} from "@/libs/firebase/authService";
 // components
 import FormLayout from "@/components/Forms/FormLayout";
 import Label from "@/components/Label";
 import InputUi from "@/components/InputUi";
-import { FiEyeOff } from "react-icons/fi";
 import SignInButton from "@/components/Btns/SignInButton";
-import { FiEye } from "react-icons/fi";
 import GoogleButton from "@/components/Btns/GoogleButton";
+import Title from "@/components/Title";
+import InputLayout from "@/components/InputLayout";
 //icons
 import Icon from "@/components/Icon";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
+// toast
+import toast from "react-hot-toast";
+// context
+import { useAuth } from "@/context/AuthContext";
+
+
 
 export default function SignInForm({ onGoogleLogin, onEmailLogin,  visible }) {
+
+    const { setLoading , setUser } = useAuth();
+
     const router = useRouter();
     const perfil = JSON.parse(localStorage.getItem("Photo")) || null;
-    console.log(perfil);
-    const emailRef = useRef(null);
-    const passwordRef = useRef(null);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(true);
 
+
+    const hendleSubmit = async (e) => {
+        e.preventDefault();
+        if (!email || !password) return toast.error("Por favor, preencha todos os campos!");
+         
+        const { user, error } = await loginWithEmail(email, password);
+
+        if (error) {
+            if (error.code === "auth/invalid-credential") {
+                return toast.error("Email ou senha incorretos.");
+            }
+
+            return toast("Ocorreu um erro ao realizar o login. Por favor, tente novamente.");
+        }
+
+        if (!user) return toast.error("Ocorreu um erro ao realizar o login. Por favor, tente novamente.");
+        setUser(user);
+
+        if (user) {
+            localStorage.setItem("Photo", JSON.stringify(user.photoURL));
+        }
+        setLoading(true);
+        toast.success("Login realizado com sucesso!");
+    }
+
+
+
   return (
-    <FormLayout visible={visible}>
-        <form onSubmit={(e) => onEmailLogin(e)} className="w-full flex flex-col items-center pt-2 pb-5">
+    <FormLayout  visible={visible}>
+        <form onSubmit={(e) => hendleSubmit(e)} className="w-full flex flex-col items-center pt-2 pb-5">
             {perfil === null ?
                 <Icon 
                     className="rounded-full "
@@ -40,35 +78,33 @@ export default function SignInForm({ onGoogleLogin, onEmailLogin,  visible }) {
                     className="rounded-full mb-1.5 mt-1.5"
                 />
             }
-            <h1 className="text-[rgb(var(--text-title))] text-[1.2rem] font-bold">Acesso ao Painel</h1>
+            <Title text="Acesso ao Painel" />
             <p className="pl-3 pr-3 text-[1rem] text-center text-[rgb(var(--text-paragraph))] font-normal">Entre na sua conta com seus dados abaixo:</p>
             <div className="w-full xxs:w-[85%] xs:w-[80%] sm:w-[80%] pl-5  pr-5 mt-8 ">
-                
-                <div 
-                    onClick={() => emailRef.current?.focus()}
-                    className="flex items-center justify-center  bg-[rgb(var(--input-bg))] rounded-[5px] mb-4 cursor-pointer flex-col h-13 position: relative pl-4"
-                >
+                <InputLayout>
                     <Label id="email">Email</Label>
                     <InputUi 
-                        ref={emailRef} 
                         id="email" 
                         type="email" 
+                        name="email"
                         placeholder="Email@example.com" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         autocomplete="email" 
+                        required
                     />
-                </div>
-                
-                <div 
-                    onClick={() => passwordRef.current?.focus()}
-                    className="flex items-center justify-center  bg-[rgb(var(--input-bg))] rounded-[5px] cursor-pointer flex-col h-13 position: relative pl-4"
-                >
+                </InputLayout>
+                <InputLayout>
                     <Label id="password">Senha</Label>
                     <InputUi 
-                        ref={passwordRef} 
                         id="password" 
                         type={showPassword ? "password" : "text"} 
+                        name="password"
                         placeholder="Digite sua senha" 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         autocomplete="new-password"
+                        required
                     />
                     {showPassword ? 
                         <FiEyeOff onClick={(e) => {e.stopPropagation(); setShowPassword(false)}}  className=" 
@@ -77,24 +113,20 @@ export default function SignInForm({ onGoogleLogin, onEmailLogin,  visible }) {
                         <FiEye onClick={(e) => {e.stopPropagation(); setShowPassword(true)}} className="
                         text-[rgb(var(--icon-secundary))] hover:text-[rgb(var(--icon-hover))] text-[1.2rem] cursor-pointer position: absolute right-4"  />
                     }
-                </div>
-
-            </div>
-            <p onClick={() => router.push("/recovery")} className="text-[rgb(var(--text))] text-[0.9rem] w-full text-center cursor-pointer hover:underline mb-3.5 mt-3 italic font-medium">Esqueceu a senha?</p>
-            <div className="w-full xxs:w-[85%] xs:w-[80%] sm:w-[80%] pl-5  pr-5  ">
+                </InputLayout>
+                <p onClick={() => router.push("/recovery")} className="text-[rgb(var(--text))] text-[0.9rem] w-full text-center cursor-pointer hover:underline mb-3.5 mt-3 italic font-medium">Esqueceu a senha?</p>
                 <SignInButton  text="Entrar"/>
-            </div>
-            <p className="text-[rgb(var(--text))] text-[0.9rem] font-medium text-center mt-1.5 mb-1.5">OU CONTINUAR COM</p>
-            <div className="w-full xxs:w-[85%] xs:w-[80%] sm:w-[80%] pl-5  pr-5  ">
+                <p className="text-[rgb(var(--text))] text-[0.9rem] font-medium text-center mt-1.5 mb-1.5">OU CONTINUAR COM</p>
                 <GoogleButton onClick={() => {onGoogleLogin()}} />
-            </div>
-            <p className="w-[190px] xxs:w-full text-[rgb(var(--text))] text-[0.9rem] text-center mt-4">Não tem uma conta? 
+            </div>   
+            <p className=" w-[190px]  xxs:w-full  text-[rgb(var(--text))] text-[0.9rem] text-center mt-4">Não tem uma conta? 
                 <span 
-                    className="text-[rgb(var(--text-links))] cursor-pointer hover:underline"
+                    className="text-[rgb(var(--text-links))] cursor-pointer hover:underline "
                     onClick={() => router.replace('/register')}
                 >
                     Cadastre-se agora
-                </span></p>
+                </span>
+            </p>
         </form>
     </FormLayout>
   );

@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono,  Roboto } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
+import { Toaster } from 'react-hot-toast';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <head>
+        <link rel="preload" href="/fonts/minha-fonte.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
       </head>
       <body
@@ -38,6 +40,17 @@ export default function RootLayout({ children }) {
       >
         <AuthProvider>
           {children}
+          <Toaster
+            position="top-center"
+            reverseOrder={false}
+            gutter={8}
+            containerClassName=""
+            toastOptions={{
+              style: {
+                fontSize: "1rem",
+              },
+            }}
+          />
         </AuthProvider>
       </body>
     </html>

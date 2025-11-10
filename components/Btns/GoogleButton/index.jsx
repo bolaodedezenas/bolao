@@ -3,7 +3,7 @@
 export default function GoogleButton({ onClick }) {
 
   return (
-    <button
+    <div
         onClick={onClick}
         className="
           w-full 
@@ -28,6 +28,6 @@ export default function GoogleButton({ onClick }) {
             className="w-5 h-5"
         />
         Entrar com Google
-    </button>
+    </div>
   );
 }

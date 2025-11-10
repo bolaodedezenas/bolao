@@ -1,6 +1,5 @@
 "user client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 // components
@@ -16,8 +15,6 @@ import Icon from "@/components/Icon";
 export default function SignInForm({ onGoogleLogin, onEmailLogin,  visible }) {
     const router = useRouter();
     const perfil = JSON.parse(localStorage.getItem("Photo")) || null;
-
-    const [showPassword, setShowPassword] = useState(true);
 
   return (
     <FormLayout visible={visible}>
@@ -39,21 +36,22 @@ export default function SignInForm({ onGoogleLogin, onEmailLogin,  visible }) {
             }
             <Title text="Recuperar Senha" />
             <p className="pl-3 pr-3 text-[1rem] text-center text-[rgb(var(--text-paragraph))] font-normal">Entre com seus dados abaixo:</p>
-            <InputLayout>
-                <Label id="email">Email</Label>
-                <InputUi 
-                    id="email" 
-                    type="email" 
-                    placeholder="Email@example.com" 
-                    autocomplete="email" 
-                    required
-                />
-            </InputLayout>
-                   
+            <div className="w-full xxs:w-[85%] xs:w-[80%] sm:w-[80%] pl-5  pr-5 mt-8 ">
+                <InputLayout>
+                    <Label id="email">Email *</Label>
+                    <InputUi 
+                        id="email" 
+                        type="email" 
+                        placeholder="Email@example.com" 
+                        autocomplete="email" 
+                        required
+                    />
+                </InputLayout>
+            </div>
             <p className="w-[190px] xxs:w-full text-[rgb(var(--text))] text-[0.9rem] text-center mb-4">Lembrou sua  senha? 
                 <span 
                     className="text-[rgb(var(--text-links))] font-bold cursor-pointer hover:underline"
-                    onClick={() => router.replace('/loginr')}
+                    onClick={() => router.replace('/login')}
                 >
                     Entrar
                 </span>

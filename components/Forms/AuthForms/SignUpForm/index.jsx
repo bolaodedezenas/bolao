@@ -1,161 +1,445 @@
-"user client";
+// "user client";
+
+// import { useState } from "react";
+// import { useRouter } from "next/navigation";
+// // components
+// import FormLayout from "@/components/Forms/FormLayout";
+// import Label from "@/components/Label";
+// import InputUi from "@/components/InputUi";
+// import SignInButton from "@/components/Btns/SignInButton";
+// import GoogleButton from "@/components/Btns/GoogleButton";
+// import Title from "@/components/Title";
+// import InputLayout from "@/components/InputLayout";
+// //icons
+// import Icon from "@/components/Icon";
+// import { FiEyeOff } from "react-icons/fi";
+// import { FiEye } from "react-icons/fi";
+
+// // import { toast } from 'sonner';
+
+// // try {
+// //   schema.parse(data);
+// // } catch (err) {
+// //   toast.error(err.errors[0].message);
+// // }
+
+
+
+
+// export default function SignUpForm({visible , setVisible}) {
+//     const router = useRouter();
+//     const [showPassword, setShowPassword] = useState(true);
+
+//     const [name, setName] = useState("");
+//     const [email, setEmail] = useState("");
+//     const [password, setPassword] = useState("");
+//     const [passwordConfirm, setPasswordConfirm] = useState("");
+//     const [phone, setPhone] = useState("");
+//     const [state, setState] = useState("");
+//     const [city, setCity] = useState("");
+//     const [terms, setTerms] = useState(false);
+   
+
+    
+//     // Login com email e senha
+//     const onRegister = async (e) => {
+//         e.preventDefault();
+//         // setError("");
+//         // const { user, error } = await handleEmailLogin(email, password);
+//         // if (error) return setError("Email ou senha inválidos.");
+//         // alert(`Login realizado! Bem-vindo, ${user.displayName || user.email}`);
+//         // router.push("/dashboard")
+//     };
+
+//   return (
+//     <FormLayout visible={visible}>
+//         <form onSubmit={(e) => onRegister(e)} className="w-full flex flex-col items-center">
+//             <Icon 
+//                 className="rounded-full"
+//                 name="Diamond" 
+//                 size={50} 
+//                 color="rgb(var(--icon))" 
+//             />
+//             <Title text="Criar Conta" />
+//             <p className="pl-3 pr-3 text-[1rem] text-center text-[rgb(var(--text-paragraph))] font-normal">Registre-se
+//                 e Comece a ganhar hoje!
+//             </p>
+//             <div className="w-full xxs:w-[85%] xs:w-[80%] sm:w-[80%] pl-5  pr-5 mt-8 ">
+//                 <InputLayout>
+//                     <Label id="name">Nome *</Label>
+//                     <InputUi 
+//                         id="name" 
+//                         type="text" 
+//                         placeholder="Digite seu nome" 
+//                         autocomplete="name" 
+//                     />
+//                 </InputLayout>
+
+//                 <InputLayout>
+//                     <Label id="email">Email *</Label>
+//                     <InputUi 
+//                         id="email" 
+//                         type="email" 
+//                         placeholder="Email@example.com" 
+//                         autocomplete="email" 
+//                     />
+//                 </InputLayout>
+                
+//                 <InputLayout>
+//                     <Label id="password">Senha *</Label>
+//                     <InputUi 
+//                         id="password" 
+//                         type={showPassword ? "password" : "text"} 
+//                         placeholder="Digite sua senha" 
+//                         autocomplete="new-password"
+//                     />
+//                     {showPassword ? 
+//                         <FiEyeOff onClick={(e) => {e.stopPropagation(); setShowPassword(false)}}  className=" 
+//                         text-[rgb(var(--icon-secundary))] hover:text-[rgb(var(--icon-hover))] text-[1.2rem]  cursor-pointer position: absolute right-4" /> 
+//                         :
+//                         <FiEye onClick={(e) => {e.stopPropagation(); setShowPassword(true)}} className="
+//                         text-[rgb(var(--icon-secundary))] hover:text-[rgb(var(--icon-hover))] text-[1.2rem] cursor-pointer position: absolute right-4"  />
+//                     }
+//                 </InputLayout>
+               
+//                 <InputLayout>
+//                     <Label id="password-confirm">Confirme a Senha *</Label>
+//                     <InputUi 
+//                         id="password-confirm" 
+//                         type={showPassword ? "password" : "text"} 
+//                         placeholder="Repita sua senha" 
+//                         autocomplete="new-password"
+//                     />
+//                 </InputLayout>
+
+//                 <InputLayout>
+//                     <Label id="tel">Telefone</Label>
+//                     <InputUi 
+//                         id="tel" 
+//                         type="text" 
+//                         placeholder="(99) 99999-9999" 
+//                         autocomplete="new-tel"
+//                     />
+//                 </InputLayout>
+
+//                 <InputLayout>
+//                     <Label id="uf">Estado</Label>
+//                     <InputUi 
+//                         id="uf" 
+//                         type="text" 
+//                         placeholder="Escolha seu estado" 
+//                     />
+//                     <Icon 
+//                         name="keyboard_arrow_down" 
+//                         size={30} 
+//                         color="rgb(var(--icon-secundary)) "
+//                         className="block cursor-pointer position: absolute right-2 top-4" 
+//                     />
+//                 </InputLayout>
+
+//                 <InputLayout>
+//                    <Label id="city">Cidade</Label>
+//                     <InputUi 
+//                         id="city" 
+//                         type="text"
+//                         placeholder="Escolha sua cidade" 
+//                     />
+//                     <Icon 
+//                         name="keyboard_arrow_down" 
+//                         size={30} 
+//                         color="rgb(var(--icon-secundary)) "
+//                         className="block cursor-pointer position: absolute right-2 top-4" 
+//                     />
+//                 </InputLayout>
+//                 <div 
+//                      className="flex items-center  mb-4 cursor-pointer  gap-3"
+//                     >
+//                         <InputUi 
+//                             type={"checkbox"} 
+//                             width={"20px"}
+//                             height={"20px"}
+//                         />
+//                         <p className="max-w-[90%] text-[rgb(var(--text))] text-[0.9rem] font-medium">Declaro ter 18+ 
+//                             <span className="text-[rgb(var(--text-links))] cursor-pointer hover:underline pl-1">
+//                                 Termos e Condições 
+//                             </span> 
+//                             {" "}
+//                             *
+//                         </p>
+//                 </div>
+//                 <SignInButton  text="Criar Conta"/>
+//                 <p className="text-[rgb(var(--text))] text-[0.9rem] font-medium text-center mt-1.5 mb-1.5">
+//                     OU CONTINUAR COM
+//                 </p>
+//                 <GoogleButton onClick={() => {onGoogleLogin()}} />
+//             </div>
+//             <p className="w-[190px] xxs:w-full text-[rgb(var(--text))] text-[0.9rem] text-center mt-4">Já tem conta?    <span className="text-[rgb(var(--text-links))] cursor-pointer hover:underline font-bold"
+//                     onClick={() => router.replace('/login')}
+//                 >
+//                     Entrar
+//                 </span>
+//             </p>
+//         </form>
+//     </FormLayout>
+//   );
+// }
+
+
+
+
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import  { registerSchema } from '@/schemas/authSchemas';
+
 // components
 import FormLayout from "@/components/Forms/FormLayout";
 import Label from "@/components/Label";
 import InputUi from "@/components/InputUi";
-import { FiEyeOff } from "react-icons/fi";
 import SignInButton from "@/components/Btns/SignInButton";
-import { FiEye } from "react-icons/fi";
 import GoogleButton from "@/components/Btns/GoogleButton";
+import Title from "@/components/Title";
+import InputLayout from "@/components/InputLayout";
 //icons
 import Icon from "@/components/Icon";
+import { FiEyeOff, FiEye } from "react-icons/fi";
+// hooks
+import { registerWithEmail } from "@/libs/firebase/authService";
+// toast
+import toast from "react-hot-toast";
+// context
+import { useAuth } from "@/context/AuthContext";
 
-export default function SignUpForm({ onGoogleLogin, onEmailLogin,  visible }) {
+export default function SignUpForm({onGoogleLogin}) {
+  const router = useRouter();
+  const [showPassword, setShowPassword] = useState(true);
 
-    const router = useRouter();
-    const [showPassword, setShowPassword] = useState(true);
+  const { setLoading } = useAuth();
+
+  // ✅ Estados dos inputs
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [cep, setCep] = useState("");
+  const [phone, setPhone] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+  const [terms, setTerms] = useState(false);
+
+    // ✅ Registrar
+    const onRegister = async (e) => {
+        e.preventDefault();
+        // ✅ Monta o objeto apenas com os campos que queremos salvar
+        const formData = {
+            name,
+            email,
+            password,
+            phone,
+            cep,
+            state,
+            city,
+            terms,
+            photoURL: "",
+            permissions: [],
+            status: false,
+        };
+
+        // ✅ Validação com Zod
+        const result = await registerSchema.safeParseAsync(formData);        
+        console.log(result.error);
+
+        if (!result.success) {
+            const firstError = result.error.issues[0].message; // acessa o primeiro item do array de erros
+            console.log(firstError);          // mostra no console
+            toast.error(firstError);          // mostra na UI
+            return;
+        }
+        // (00)00000-0000
+
+        // ✅ Cria usuário no Firebase sem enviar campos extras
+        const { error } = await registerWithEmail(email, password, formData);
+
+        // ✅ Tratar erro DO FIREBASE
+        if (error) {
+            if (error.code === "auth/email-already-in-use") {
+                toast.error("Este e-mail já está em uso. Tente outro.");
+                return;
+            }
+
+            // Para outros erros
+            toast.error(error.message || "Erro ao registrar");
+            console.log(error.message);
+            return;
+        }
+
+        toast.success("Conta criada com sucesso!");
+        setLoading(true);
+    };
+
+
+
 
   return (
-    <FormLayout visible={visible}>
-        <form onSubmit={(e) => onEmailLogin(e)} className="w-full flex flex-col items-center pt-2 pb-5">
-            <Icon 
-                className="rounded-full"
-                name="Diamond" 
-                size={50} 
-                color="rgb(var(--icon))" 
+    <FormLayout>
+      <form onSubmit={onRegister} className="w-full flex flex-col items-center">
+
+        <Icon className="rounded-full" name="Diamond" size={50} color="rgb(var(--icon))" />
+        <Title text="Criar Conta" />
+        <p className="pl-3 pr-3 text-[1rem] text-center text-[rgb(var(--text-paragraph))] font-normal">
+          Registre-se e Comece a ganhar hoje!
+        </p>
+
+        <div className="w-full xxs:w-[85%] xs:w-[80%] sm:w-[80%] pl-5  pr-5 mt-8">
+
+          <InputLayout>
+            <Label id="name">Nome *</Label>
+            <InputUi
+              id="name"
+              type="text"
+              placeholder="Digite seu nome"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              autocomplete="name"
             />
-            <h1 className="text-[rgb(var(--text-title))] text-[1.2rem] font-bold">Criar Conta</h1>
-            <p className="pl-3 pr-3 text-[1rem] text-center text-[rgb(var(--text-paragraph))] font-normal">Registre-se
-                e Comece a ganhar hoje!</p>
-            <div className="w-full xxs:w-[85%] xs:w-[80%] sm:w-[80%] pl-5  pr-5 mt-8 ">
-                
-                <div 
-                    className="flex items-center justify-center  bg-[rgb(var(--input-bg))] rounded-[5px] mb-4 cursor-pointer flex-col h-13 position: relative pl-4"
-                >
-                    <Label id="email">Email</Label>
-                    <InputUi 
-                        id="email" 
-                        type="email" 
-                        placeholder="Email@example.com" 
-                        autocomplete="email" 
-                    />
-                </div>
-                
-                <div 
-                    className="flex items-center justify-center  bg-[rgb(var(--input-bg))] rounded-[5px] mb-4 cursor-pointer flex-col h-13 position: relative pl-4"
-                >
-                    <Label id="password">Senha</Label>
-                    <InputUi 
-                        id="password" 
-                        type={showPassword ? "password" : "text"} 
-                        placeholder="Digite sua senha" 
-                        autocomplete="new-password"
-                    />
-                    {showPassword ? 
-                        <FiEyeOff onClick={(e) => {e.stopPropagation(); setShowPassword(false)}}  className=" 
-                        text-[rgb(var(--icon-secundary))] hover:text-[rgb(var(--icon-hover))] text-[1.2rem]  cursor-pointer position: absolute right-4" /> 
-                        :
-                        <FiEye onClick={(e) => {e.stopPropagation(); setShowPassword(true)}} className="
-                        text-[rgb(var(--icon-secundary))] hover:text-[rgb(var(--icon-hover))] text-[1.2rem] cursor-pointer position: absolute right-4"  />
-                    }
-                </div>
+          </InputLayout>
 
-                <div 
-                    className="flex items-center justify-center  bg-[rgb(var(--input-bg))] rounded-[5px] mb-4 cursor-pointer flex-col h-13 position: relative pl-4"
-                >
-                    <Label id="password-confirm">Confirme a Senha</Label>
-                    <InputUi 
-                        id="password-confirm" 
-                        type={showPassword ? "password" : "text"} 
-                        placeholder="Repita sua senha" 
-                        autocomplete="new-password"
-                    />
-                </div>
+          <InputLayout>
+            <Label id="email">Email *</Label>
+            <InputUi
+              id="email"
+              type="email"
+              placeholder="Email@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autocomplete="email"
+            />
+          </InputLayout>
 
-                <div 
-                    className="flex items-center justify-center  bg-[rgb(var(--input-bg))] rounded-[5px] mb-4 cursor-pointer flex-col h-13 position: relative pl-4"
-                >
-                    <Label id="tel">Telefone</Label>
-                    <InputUi 
-                        id="tel" 
-                        type="text" 
-                        placeholder="(99) 99999-9999" 
-                        autocomplete="new-tel"
-                    />
-                </div>
+          <InputLayout>
+            <Label id="password">Senha *</Label>
+            <InputUi
+              id="password"
+              type={showPassword ? "password" : "text"}
+              placeholder="Digite sua senha"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autocomplete="new-password"
+            />
 
-                <div 
-                    className="flex items-center justify-center  bg-[rgb(var(--input-bg))] rounded-[5px] mb-4 cursor-pointer flex-col h-13 position: relative pl-4"
-                >
-                    <Label id="uf">Estado</Label>
-                    <InputUi 
-                        id="uf" 
-                        type="text" 
-                        placeholder="Escolha seu estado" 
-                    />
-                    <Icon 
-                        name="keyboard_arrow_down" 
-                        size={30} 
-                        color="rgb(var(--icon-secundary)) "
-                        className="block cursor-pointer position: absolute right-2 top-4" 
-                    />
-                        
-                </div>
+            {showPassword ? (
+              <FiEyeOff
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowPassword(false);
+                }}
+                className="text-[rgb(var(--icon-secundary))] hover:text-[rgb(var(--icon-hover))] text-[1.2rem] cursor-pointer position: absolute right-4"
+              />
+            ) : (
+              <FiEye
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowPassword(true);
+                }}
+                className="text-[rgb(var(--icon-secundary))] hover:text-[rgb(var(--icon-hover))] text-[1.2rem] cursor-pointer position: absolute right-4"
+              />
+            )}
+          </InputLayout>
 
-                <div 
-                    className="flex items-center justify-center  bg-[rgb(var(--input-bg))] rounded-[5px]
-                    mb-4 cursor-pointer flex-col h-13 position: relative pl-4"
-                >
-                    <Label id="city">Cidade</Label>
-                    <InputUi 
-                        id="city" 
-                        type="text"
-                        placeholder="Escolha sua cidade" 
-                    />
-                    <Icon 
-                        name="keyboard_arrow_down" 
-                        size={30} 
-                        color="rgb(var(--icon-secundary)) "
-                        className="block cursor-pointer position: absolute right-2 top-4" 
-                    />
-                </div>
+           <InputLayout>
+            <Label id="tel">Telefone</Label>
+            <InputUi
+              id="tel"
+              type="text"
+              placeholder="(99) 99999-9999"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              autocomplete="tel"
+            />
+          </InputLayout>
 
-                <div 
-                     className="flex items-center  mb-4 cursor-pointer  gap-3"
-                    >
-                        <InputUi 
-                            type={"checkbox"} 
-                            width={"20px"}
-                            height={"20px"}
-                        />
-                        <p className="text-[rgb(var(--text))] text-[0.9rem] font-medium">Concordo com os 
-                            <span className="text-[rgb(var(--text-links))] cursor-pointer hover:underline">Termos</span>  e a <span className="text-[rgb(var(--text-links))] cursor-pointer hover:underline">Política</span>
-                        </p>
-                </div>
-            </div>
+          <InputLayout>
+            <Label id="cep">CEP *</Label>
+            <InputUi
+              id="cep"
+              type="text"
+              placeholder="Digite seu CEP"
+              value={cep}
+              onChange={(e) => setCep(e.target.value)}
+              autocomplete="new-cep"
+            />
+          </InputLayout>
+         
+          <InputLayout>
+            <Label id="uf">Estado</Label>
+            <InputUi
+              id="uf"
+              type="text"
+              placeholder="Escolha seu estado"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+            />
+            <Icon
+              name="keyboard_arrow_down"
+              size={30}
+              color="rgb(var(--icon-secundary)) "
+              className="block cursor-pointer position: absolute right-2 top-4"
+            />
+          </InputLayout>
 
-            <div className="w-full xxs:w-[85%] xs:w-[80%] sm:w-[80%] pl-5  pr-5  ">
-                <SignInButton  text="Criar Conta"/>
-            </div>
-            
-            <p className="text-[rgb(var(--text))] text-[0.9rem] font-medium text-center mt-1.5 mb-1.5">
-                OU CONTINUAR COM
+          <InputLayout>
+            <Label id="city">Cidade</Label>
+            <InputUi
+              id="city"
+              type="text"
+              placeholder="Escolha sua cidade"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+            <Icon
+              name="keyboard_arrow_down"
+              size={30}
+              color="rgb(var(--icon-secundary)) "
+              className="block cursor-pointer position: absolute right-2 top-4"
+            />
+          </InputLayout>
+
+          <div className="flex items-center mb-4 cursor-pointer gap-3">
+            <InputUi
+              type="checkbox"
+              width="20px"
+              height="20px"
+              checked={terms}
+              onChange={(e) => setTerms(e.target.checked)}
+            />
+            <p className="max-w-[90%] text-[rgb(var(--text))] text-[0.9rem] font-medium">
+              Declaro ter 18+
+              <span className="text-[rgb(var(--text-links))] cursor-pointer hover:underline pl-1">
+                Termos e Condições
+              </span>{" "}
+              *
             </p>
+          </div>
 
-            <div className="w-full xxs:w-[85%] xs:w-[80%] sm:w-[80%] pl-5  pr-5  ">
-                <GoogleButton onClick={() => {onGoogleLogin()}} />
-            </div>
+          <SignInButton text="Criar Conta" />
 
-            <p className="w-[190px] xxs:w-full text-[rgb(var(--text))] text-[0.9rem] text-center mt-4">Já tem conta?    <span className="text-[rgb(var(--text-links))] cursor-pointer hover:underline font-bold"
-                onClick={() => router.replace('/login')}
-            >
-                Entrar
-            </span>
-            </p>
-        </form>
+          <p className="text-[rgb(var(--text))] text-[0.9rem] font-medium text-center mt-1.5 mb-1.5">
+            OU CONTINUAR COM
+          </p>
+          <GoogleButton onClick={() => {onGoogleLogin()}} />
+        </div>
+
+        <p className="w-[190px] xxs:w-full text-[rgb(var(--text))] text-[0.9rem] text-center mt-4">
+          Já tem conta?
+          <span
+            className="text-[rgb(var(--text-links))] cursor-pointer hover:underline font-bold"
+            onClick={() => router.replace("/login")}
+          >
+            {" "}
+            Entrar
+          </span>
+        </p>
+      </form>
     </FormLayout>
   );
 }

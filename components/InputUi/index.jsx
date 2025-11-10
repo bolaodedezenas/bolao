@@ -1,13 +1,55 @@
-"use client";
-import { forwardRef } from "react";
+// "use client";
 
-const InputUi = forwardRef(function InputUi({ type, placeholder, autocomplete, width, height, ...props }, ref) {
+// const InputUi = function InputUi({ type, placeholder, autocomplete, width, height}) {
+//   return (
+//     <input
+//       ref={ref}
+//       type={type}
+//       placeholder={placeholder}
+//       style={{ width, height }}
+//       className="
+//         block 
+//         text-[0.9rem] 
+//         placeholder:text-[0.9rem] 
+//         placeholder:text-neutral-500  
+//         font-normal 
+//         italic
+//         text-[rgb(var(--icon-secundary))]
+//         pl-4 
+//         rounded-[5px]
+//         w-full 
+//         outline-0 
+//         bg-[rgb(var(--input-bg))] 
+//         cursor-pointer"
+//       autoComplete={autocomplete}
+//     />
+//   );
+// });
+
+// export default InputUi;
+
+
+"use client";
+
+export default function InputUi({
+  type = "text",
+  placeholder,
+  autocomplete,
+  width,
+  height,
+  value,
+  onChange,
+  name,
+  ...props
+}) {
   return (
     <input
-      ref={ref}
       type={type}
+      name={name}
       placeholder={placeholder}
-      {...props}
+      value={value}
+      onChange={onChange}
+      autoComplete={autocomplete}
       style={{ width, height }}
       className="
         block 
@@ -22,10 +64,9 @@ const InputUi = forwardRef(function InputUi({ type, placeholder, autocomplete, w
         w-full 
         outline-0 
         bg-[rgb(var(--input-bg))] 
-        cursor-pointer"
-      autoComplete={autocomplete}
+        cursor-pointer
+      "
+      {...props} // permite id, checked, disabled, etc
     />
   );
-});
-
-export default InputUi;
+}

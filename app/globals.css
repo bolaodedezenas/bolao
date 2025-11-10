@@ -120,6 +120,18 @@ input:-webkit-autofill:active {
   font-family: inherit;    
   font-weight: normal;                         /* mantém a mesma fonte */
 }
-.xs {
-    width:"";
-  }
+
+/* CENTRALIZAR TODOS OS TOASTS NO MEIO DA TELA */
+#react-hot-toast {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+
+  z-index: 999999 !important;
+  pointer-events: none !important; /* deixa clicar atrás se quiser */
+}
