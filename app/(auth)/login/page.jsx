@@ -11,8 +11,6 @@ export default function LoginPage() {
   const router = useRouter();
   const { handleEmailLogin, handleLoginWithGoogle, user, loading, setLoading  } = useAuth(); // pega as funções do contexto
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [visible, setVisible] = useState(false);
 
@@ -35,13 +33,12 @@ export default function LoginPage() {
 
   // Login com Google
   const onGoogleLogin = async () => {
+    setLoading(true);
     setVisible(true);
     setError("");
     const { user, error } = await handleLoginWithGoogle();
     if (error) return setError("Erro ao entrar com Google."); setVisible(false);
-    // Exemplo dentro do onEmailLogin ou onGoogleLogin
     if (user) {
-      setLoading(true);
       router.push("/"); // redireciona para a página raiz
     }
   };

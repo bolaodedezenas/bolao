@@ -4,6 +4,7 @@ import { doc, setDoc, serverTimestamp, getDoc } from "firebase/firestore";
 
 export const loginWithGoogle = async () => {
   try {
+    
     const result = await signInWithPopup(auth, googleProvider);
     const uid = result.user.uid;
 
@@ -87,7 +88,7 @@ export const registerWithEmail = async (email, password, formData) => {
     }
 
   
-    await saveUser(user.uid, user.photoURL, Data);
+    await saveUser(user.uid,  Data);
    
 
     return { user };
@@ -97,13 +98,12 @@ export const registerWithEmail = async (email, password, formData) => {
 };
 
 
-export async function saveUser(id, data, photoURL = "") {
+export async function saveUser(id, data) {
   try {
     const userRef = doc(db, "users", id);
 
     const userData = {
       ...data,
-      photoURL, // adiciona o photoURL vindo do Firebase
       createdAt: serverTimestamp(),
     };
 

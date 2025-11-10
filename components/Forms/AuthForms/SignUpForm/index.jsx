@@ -229,6 +229,7 @@ export default function SignUpForm({onGoogleLogin}) {
 
     // ✅ Registrar
     const onRegister = async (e) => {
+         setLoading(true);
         e.preventDefault();
         // ✅ Monta o objeto apenas com os campos que queremos salvar
         const formData = {
@@ -247,7 +248,7 @@ export default function SignUpForm({onGoogleLogin}) {
 
         // ✅ Validação com Zod
         const result = await registerSchema.safeParseAsync(formData);        
-        console.log(result.error);
+  
 
         if (!result.success) {
             const firstError = result.error.issues[0].message; // acessa o primeiro item do array de erros
@@ -274,7 +275,7 @@ export default function SignUpForm({onGoogleLogin}) {
         }
 
         toast.success("Conta criada com sucesso!");
-        setLoading(true);
+       
     };
 
 

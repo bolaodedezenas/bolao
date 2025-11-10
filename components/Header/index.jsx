@@ -10,12 +10,14 @@ export default function Header() {
   const perfil = JSON.parse(localStorage.getItem("Photo")) || null;
 
   const { user, handleLogout } = useAuth();
-  const router = useRouter();
   console.log(user);
+  const router = useRouter();
+
 
   if (!user) return null; // não mostra header se não estiver logado
 
-  const firstName = user.name?.split(" ")[0] || "Usuário";
+  const firstName = user.name?.split(" ")[0] || user.displayName?.split(" ")[0] || "usuário";
+
   const photoURL = user.photoURL || "/default-avatar.png"; // coloque um avatar padrão se não tiver
 
   const logoutUser = async () => {
@@ -35,7 +37,7 @@ export default function Header() {
               color="rgb(var(--white))" 
           /> :
           <Image
-              src={photoURL}        // caminho da imagem
+              src={perfil || photoURL}        // caminho da imagem
               alt="Foto de perfil" 
               width={50}         // largura em px
               height={50}        // altura em px
@@ -44,7 +46,7 @@ export default function Header() {
        }
       
         <div>
-          <p className="font-bold text-lg">Olá, {firstName}!</p>
+          <p className="font-bold text-lg">Olá, {firstName || lastName}!</p>
           <p className="text-sm opacity-90">Bem-vindo de volta</p>
         </div>
       </div>
