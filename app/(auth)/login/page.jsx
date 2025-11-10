@@ -16,7 +16,7 @@ export default function LoginPage() {
       if (user?.status) router.replace('/');
       if(user?.status === false) return router.replace('/welcome');
     }
-  }, [user, loading, router]);
+  }, [user,  router]);
   if (loading) return  <Loading />;
 
   return (

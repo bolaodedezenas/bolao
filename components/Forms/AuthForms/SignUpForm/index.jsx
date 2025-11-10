@@ -22,7 +22,7 @@ import toast from 'react-hot-toast';
 import { useAuth } from '@/context/AuthContext';
 
 export default function SignUpForm() {
-  const { setLoading, handleLoginWithGoogle } = useAuth();
+  const {setUser, setLoading, handleLoginWithGoogle } = useAuth();
   const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(true);
@@ -62,6 +62,8 @@ export default function SignUpForm() {
     }
     //Cria usuário no Firebase
     const { user, error } = await registerWithEmail(email, password, formData);
+    console.log(user);
+    setUser(user);
     //Tratar erro DO FIREBASE
     if (error) {
       if (error.code === 'auth/email-already-in-use') {

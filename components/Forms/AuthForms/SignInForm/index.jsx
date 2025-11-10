@@ -22,7 +22,7 @@ import toast from "react-hot-toast";
 import { useAuth } from "@/context/AuthContext";
 
 export default function SignInForm() {
-  const { setLoading, setUser, handleLoginWithGoogle } = useAuth();
+  const { setLoading, setUser, handleLoginWithGoogle, handleLoginWithEmail } = useAuth();
   const router = useRouter();
   const perfil = JSON.parse(localStorage.getItem('Photo')) || null;
 
@@ -32,9 +32,9 @@ export default function SignInForm() {
 
   const hendleSubmit = async (e) => {
     e.preventDefault();
-    if (!email || !password)
-      return toast.error('Por favor, preencha todos os campos!');
-    const { user, error } = await loginWithEmail(email, password);
+    if (!email || !password) return toast.error('Por favor, preencha todos os campos!');
+
+    const { user, error } = await handleLoginWithEmail(email, password);
     if (error || !user) {
       if (error.code === 'auth/invalid-credential') {
         return toast.error('Email ou senha incorretos.');
@@ -43,10 +43,8 @@ export default function SignInForm() {
         'Ocorreu um erro ao realizar o login. Por favor, tente novamente.'
       );
     }
-    setUser(user);
     localStorage.setItem('Photo', JSON.stringify(user.photoURL))
     toast.success('Login realizado com sucesso!');
-    setLoading(true);
   };
 
   // Login com Google

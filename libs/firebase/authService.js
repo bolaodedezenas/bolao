@@ -77,8 +77,8 @@ export const registerWithEmail = async (email, password, formData) => {
       return { error: new Error("Não foi possível criar o usuário.") };
     }
     // salva os dados no banco
-    await saveUser(user.uid,  Data);
-    return { user };
+    const saved =  await saveUser(user.uid,  Data);
+    return { user: saved.user };
   } catch (error) {
     return { error };
   }
@@ -97,7 +97,7 @@ export async function saveUser(id, data) {
 
     return {
       success: true,
-      user: { uid: id, ...userData }
+      user: { id, ...userData }
     };
   } catch (error) {
     console.error("Erro ao salvar usuário:", error);

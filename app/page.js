@@ -14,10 +14,10 @@ export default function Painel() {
   const { user, loading} = useAuth();
 
    useEffect(() => {
-     if (!user) {
-       router.replace('/login'); // usuário já logado vai para raiz
-     }
+     if (!user) router.replace('/login'); // usuário já logado vai para raiz
+     if (user?.status === false) return router.replace('/welcome');
   }, [user,  loading,  router]);
+
   if (loading) return  <Loading />;
 
   return (
