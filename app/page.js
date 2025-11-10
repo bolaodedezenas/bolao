@@ -17,11 +17,8 @@ export default function Painel() {
      if (!user) {
        router.replace('/login'); // usuário já logado vai para raiz
      }
-    //  if(!user.status) router.replace('/welcome');
-   }, [user,  loading,  router]);
-
+  }, [user,  loading,  router]);
   if (loading) return  <Loading />;
-
 
   return (
     <main className="min-h-screen flex  flex-col items-center justify-center bg-black p-4">

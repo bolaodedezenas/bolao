@@ -25,6 +25,7 @@ export default function SignInForm() {
   const { setLoading, setUser, handleLoginWithGoogle } = useAuth();
   const router = useRouter();
   const perfil = JSON.parse(localStorage.getItem('Photo')) || null;
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(true);
@@ -43,9 +44,9 @@ export default function SignInForm() {
       );
     }
     setUser(user);
-    localStorage.setItem('Photo', JSON.stringify(user.photoURL));
-    setLoading(true);
+    localStorage.setItem('Photo', JSON.stringify(user.photoURL))
     toast.success('Login realizado com sucesso!');
+    setLoading(true);
   };
 
   // Login com Google
