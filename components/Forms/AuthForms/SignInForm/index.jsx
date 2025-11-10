@@ -36,12 +36,11 @@ export default function SignInForm() {
 
     const { user, error } = await handleLoginWithEmail(email, password);
     if (error || !user) {
+      setLoading(false);
       if (error.code === 'auth/invalid-credential') {
         return toast.error('Email ou senha incorretos.');
       }
-      return toast(
-        'Ocorreu um erro ao realizar o login. Por favor, tente novamente.'
-      );
+      return toast('Ocorreu um erro ao realizar o login. Por favor, tente novamente.');
     }
     localStorage.setItem('Photo', JSON.stringify(user.photoURL))
     toast.success('Login realizado com sucesso!');
