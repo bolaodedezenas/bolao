@@ -70,8 +70,8 @@ export const AuthProvider = ({ children }) => {
           const docRef = doc(db, 'users', firebaseUser.uid);
           const snap = await getDoc(docRef);
 
-          console.log(snap.exists());
-          console.log(snap.data());
+          // console.log(snap.exists());
+          // console.log(snap.data());
 
           if (snap.exists()) {
             setUser(snap.data());

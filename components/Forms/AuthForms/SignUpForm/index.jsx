@@ -52,7 +52,6 @@ export default function SignUpForm() {
          toast.error('CEP não encontrado');
          return;
        }
-       console.log(data);
        setState(data.estado);
        setCity(data.localidade);
      } catch (err) {
@@ -90,7 +89,6 @@ export default function SignUpForm() {
     }
     //Cria usuário no Firebase
     const { user, error } = await registerWithEmail(email, password, formData);
-    console.log(user);
     setUser(user);
     //Tratar erro DO FIREBASE
     if (error) {

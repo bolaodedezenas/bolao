@@ -41,7 +41,7 @@ export const cityField = z
 // Estado (UF)
 export const stateField = z
   .string()
-  .length(2, "Estado deve ter 2 letras (UF)")
+  .min(2, 'Estado deve ter 2 letras (UF)')
   .transform((s) => s.toUpperCase())
   .optional();
 
