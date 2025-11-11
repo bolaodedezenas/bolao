@@ -221,7 +221,7 @@ export default function SignUpForm() {
               type='text'
               placeholder='(99) 99999-9999'
               value={phone}
-              onchange={handlePhoneChange}
+              onChange={handlePhoneChange}
               autocomplete='tel'
             />
           </InputLayout>
