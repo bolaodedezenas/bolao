@@ -9,6 +9,7 @@ export default function InputUi({
   value,
   onChange,
   name,
+  onBlur,
   ...props
 }) {
   return (
@@ -19,6 +20,7 @@ export default function InputUi({
       value={value}
       onChange={onChange}
       autoComplete={autocomplete}
+      onBlur={onBlur}
       style={{ width, height }}
       className="
         block 
