@@ -69,4 +69,9 @@ export const registerSchema = z.object({
   status: z.boolean().default(false),
 });
 
+ // Schema de reset de senha
+export const resetPassordSchema = z.object({
+  password: passwordField,
+});
+
 

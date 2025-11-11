@@ -1,19 +1,21 @@
-"use client";
+'use client';
 
-import Link from "next/link";
+import { useRouter } from 'next/navigation';
 
 export default function NotFound() {
+  const router = useRouter();
+
   return (
-    <main className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black text-white">
+    <main className='relative min-h-screen flex items-center justify-center overflow-hidden bg-black text-white'>
       {/* Fundo animado */}
-      <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-blue-900/40 via-purple-900/40 to-black/40" />
+      <div className='absolute inset-0 animate-pulse bg-gradient-to-br from-blue-900/40 via-purple-900/40 to-black/40' />
 
       {/* Efeito de partículas */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className='absolute inset-0 pointer-events-none'>
         {[...Array(30)].map((_, i) => (
           <span
             key={i}
-            className="absolute w-1 h-1 bg-white rounded-full opacity-60 animate-float"
+            className='absolute w-1 h-1 bg-white rounded-full opacity-60 animate-float'
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -24,25 +26,21 @@ export default function NotFound() {
         ))}
       </div>
 
-      <div className="relative z-10 text-center px-6">
-        {/* Número 404 com glitch */}
-        <h1 className="text-[5rem] md:text-[8rem] font-extrabold tracking-widest glitch relative select-none">
+      <div className='relative z-10 text-center px-6'>
+        <h1 className='text-[5rem] md:text-[8rem] font-extrabold tracking-widest glitch relative select-none'>
           404
         </h1>
-
-        <p className="mt-4 text-lg opacity-80">
+        <p className='mt-4 text-lg opacity-80'>
           Ops! Parece que essa página se perdeu no caminho.
         </p>
-
-        <Link
-          href="/"
-          className="mt-8 inline-block px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-all shadow-lg"
+        <div
+          onClick={() => router.replace('/login')}
+          className='mt-8 inline-block px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-all shadow-lg'
         >
           Voltar ao início
-        </Link>
+        </div>
       </div>
 
-      {/* CSS */}
       <style jsx>{`
         /* Glitch effect */
         .glitch {
@@ -52,7 +50,7 @@ export default function NotFound() {
 
         .glitch::before,
         .glitch::after {
-          content: "404";
+          content: '404';
           position: absolute;
           top: 0;
           left: 0;

@@ -5,8 +5,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
+  confirmPasswordReset,
 } from 'firebase/auth';
 import { doc, setDoc, serverTimestamp, getDoc } from 'firebase/firestore';
+
 
 export const loginWithGoogle = async () => {
   try {
@@ -114,8 +116,8 @@ export async function sendPasswordReset(email) {
   try {
     // Defina actionCodeSettings com a URL da sua página
     const actionCodeSettings = {
-      url: 'https://www.bolaodedezenas.com.br/resetPassword', // sua página de reset
-      handleCodeInApp: true, // importante para usar sua própria UI
+      url: 'http://localhost:3000/resetPassword', // sua página
+      handleCodeInApp: true,
     };
 
     await sendPasswordResetEmail(auth, email, actionCodeSettings);
@@ -126,14 +128,12 @@ export async function sendPasswordReset(email) {
   }
 }
 
-export  async function  handleResetPassword(oobCode, password, toast) {
+export  async function  handleResetPassword(oobCode, password) {
   try {
     // Aqui fazemos o reset da senha usando o oobCode
     await confirmPasswordReset(auth, oobCode, password);
-    toast.success('Senha redefinida com sucesso!');
-    return true;
-  } catch (err) {
-    toast.error('Erro ao redefinir a senha: ' + err.message);
-    return false;
+    return {status: true, message: 'Senha redefinida com sucesso!'};
+  } catch (error) {
+    return  {status: false, message: error.message};
   }
 };
