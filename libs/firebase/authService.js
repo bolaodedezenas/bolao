@@ -114,7 +114,7 @@ export async function sendPasswordReset(email) {
   try {
     // Defina actionCodeSettings com a URL da sua página
     const actionCodeSettings = {
-      url:'http://localhost:3000/resetPassword', // sua página de reset
+      url: 'https://www.bolaodedezenas.com.br/resetPassword', // sua página de reset
       handleCodeInApp: true, // importante para usar sua própria UI
     };
 
