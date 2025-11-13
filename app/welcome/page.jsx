@@ -60,8 +60,8 @@ export default function Welcome() {
   if (loading) return <Loading />;
 
   return (
-    <div className='flex items-center justify-center min-h-screen bg-gradient-to-b from-[rgb(var(--background))] to-[rgb(var(--background-secundary))] p-6'>
-      <div className='flex flex-col items-center justify-center relative bg-white/90 shadow-2xl  rounded-3xl p-12 w-full max-w-[600px] text-center border border-gray-100 backdrop-blur-md'>
+    <div className='flex items-center justify-center min-h-screen bg-gradient-to-b from-[rgb(var(--background))] to-[rgb(var(--background-secundary))] p-4'>
+      <div className='flex flex-col items-center justify-center relative bg-white shadow-2xl  rounded-3xl p-8 w-full max-w-[600px] text-center '>
         {/* Ícone animado */}
         <div className='relative flex items-center justify-center w-25 h-25 rounded-full   '>
           <span className='text-6xl animate-spin'>🕓</span>
