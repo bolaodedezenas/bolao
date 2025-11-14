@@ -15,17 +15,47 @@ import {sendPasswordReset} from "@/libs/firebase/authService";
 // toast
 import toast from "react-hot-toast";
 
+//context
+import { useAuth } from "@/context/AuthContext";
+
 export default function SignInForm() {
+    const { setLoading } = useAuth();
     const router = useRouter();
     const perfil = JSON.parse(localStorage.getItem("Photo")) || null;
     const [email, setEmail] = useState("");
     const [time , setTime] = useState(0);
 
+    async function checkEmail(email) {
+      const res = await fetch('/api/checkEmail', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+      console.log(data);
+      return data.exists;
+    }
+
+
     async function hendleSubmit(e) {
         e.preventDefault();
         if (!email) return toast.error('Por favor, preencha todos os campos!');
         if(time > 0) return toast.error('Por favor, aguarde o tempo para enviar outro e-mail.');
-        
+        const exists = await checkEmail(email);
+
+        if (!exists){
+          startCountdown(); 
+          toast.error(
+            `Ops!, você ainda não possui uma conta!  redirecionando para cadastro em 3s segundos...`,
+            { duration: 5000 }
+          );
+          setTimeout(() => {
+            router.push('/register');
+          }, 4000);
+          return;
+        }
+         
         const res = await sendPasswordReset(email);
         console.log(res);
         if (res.ok === false) return toast.error(res.error);
